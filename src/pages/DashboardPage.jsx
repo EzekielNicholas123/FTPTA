@@ -10,7 +10,7 @@ const DashboardPage = () => {
         display: "flex",
         flexDirection: "column",
         flexGrow: 1,
-        overflow: "hidden",
+        alignItems: "center",
       }}
     >
       {/* Top section */}
@@ -26,6 +26,7 @@ const DashboardPage = () => {
           justifyContent: "center",
           padding: "0 30%",
           gap: "2em",
+          width: "100%",
         }}
       >
         <Typography
@@ -52,6 +53,7 @@ const DashboardPage = () => {
           display: "flex",
           flexDirection: "column",
           padding: "2em",
+          maxWidth: "xl",
         }}
       >
         <Typography variant="h4">About</Typography>
