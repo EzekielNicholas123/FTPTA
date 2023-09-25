@@ -25,7 +25,7 @@ const DashboardPage = () => {
           alignItems: "center",
           justifyContent: "center",
           padding: "0 30%",
-          gap: "2em",
+          gap: "2rem",
           width: "100%",
         }}
       >
@@ -52,12 +52,12 @@ const DashboardPage = () => {
         sx={{
           display: "flex",
           flexDirection: "column",
-          padding: "2em",
+          padding: "2rem",
           maxWidth: "xl",
         }}
       >
         <Typography variant="h4">About</Typography>
-        <Divider sx={{ mb: "1em" }} />
+        <Divider sx={{ mb: "1rem" }} />
         <Typography variant="body1" paragraph>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
           placeat magni amet! Totam facere eveniet voluptatibus, consequatur eos
