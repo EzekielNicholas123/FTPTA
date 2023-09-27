@@ -51,6 +51,7 @@ const LoginPage = () => {
               sx={{ mb: "1rem" }}
               fullWidth
               label="Email"
+              type="email"
               variant="outlined"
               value={form.email}
               onChange={(event) => {
@@ -59,6 +60,7 @@ const LoginPage = () => {
                   email: event.target.value,
                 });
               }}
+              InputLabelProps={{ shrink: true }}
             />
             <TextField
               sx={{ mb: "1rem" }}
@@ -73,6 +75,7 @@ const LoginPage = () => {
                   password: event.target.value,
                 });
               }}
+              InputLabelProps={{ shrink: true }}
             />
             <Button fullWidth variant="contained" type="submit">
               Login
