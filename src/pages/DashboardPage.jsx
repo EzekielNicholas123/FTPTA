@@ -56,7 +56,7 @@ const DashboardPage = () => {
           maxWidth: "xl",
         }}
       >
-        <Typography variant="h4">About</Typography>
+        <Typography variant="h5">About</Typography>
         <Divider sx={{ mb: "1rem" }} />
         <Typography variant="body1" paragraph>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum

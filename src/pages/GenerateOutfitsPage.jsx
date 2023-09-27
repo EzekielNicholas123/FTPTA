@@ -96,7 +96,11 @@ const GenerateOutfitsPage = () => {
           }}
         >
           {recommendedColors.map((color) => (
-            <Wheel color={color?.hex} style={{ position: "absolute" }} />
+            <Wheel
+              color={color?.hex}
+              style={{ position: "absolute" }}
+              key={color?.hex}
+            />
           ))}
         </Box>
       </Box>
@@ -114,7 +118,7 @@ const GenerateOutfitsPage = () => {
         }}
       >
         {recommendedColors.map((color, index) => (
-          <Card sx={{ maxWidth: 345, minWidth: 150 }}>
+          <Card sx={{ maxWidth: 345, minWidth: 150 }} key={index}>
             <CardHeader
               avatar={
                 <Box
