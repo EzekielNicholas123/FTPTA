@@ -5,6 +5,8 @@ import {
   OutfitsPage,
   ClothesPage,
   GenerateOutfitsPage,
+  LoginPage,
+  RegisterPage,
 } from "./pages";
 import { MainTheme } from "./themes";
 import { Navbar } from "./components";
@@ -20,6 +22,8 @@ const App = () => {
       <Box>
         <Routes>
           <Route path="/" element={<DashboardPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
           <Route path="/outfits" element={<OutfitsPage />} />
           <Route path="/outfits/generate" element={<GenerateOutfitsPage />} />
           <Route path="/clothes" element={<ClothesPage />} />
