@@ -52,6 +52,32 @@ const ClothesPage = () => {
             },
           },
         },
+        Segment_002: {
+          part: "Top",
+          size: 5,
+          colourRelationship: "Analogous",
+          ColourInSegmentations: {
+            ColourInSegmentation_001: {
+              positionMatrix: "[[0,1,0], [1,1,1], [0,1,0]]",
+              positionCatagory: "Center",
+              percentage: 0.556,
+              colourDefinition: "0x0000ff",
+            },
+          },
+        },
+        Segment_003: {
+          part: "Top",
+          size: 5,
+          colourRelationship: "Analogous",
+          ColourInSegmentations: {
+            ColourInSegmentation_001: {
+              positionMatrix: "[[0,1,0], [1,1,1], [0,1,0]]",
+              positionCatagory: "Center",
+              percentage: 0.556,
+              colourDefinition: "0x0000ff",
+            },
+          },
+        },
       },
     },
     {
