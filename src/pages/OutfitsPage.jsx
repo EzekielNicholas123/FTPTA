@@ -65,7 +65,7 @@ const OutfitsPage = () => {
         }}
       >
         <Typography variant="h5">
-          Outfits
+          Recommended Outfits
           <Divider sx={{ mb: "1rem" }} />
         </Typography>
       </Box>

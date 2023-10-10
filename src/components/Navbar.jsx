@@ -13,7 +13,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
 
-const pages = ["outfits", "clothes"];
+const pages = ["clothes", "recommended outfits"];
 const settings = ["Logout"];
 
 const Navbar = () => {
@@ -95,7 +95,11 @@ const Navbar = () => {
                   key={page}
                   onClick={() => {
                     handleCloseNavMenu();
-                    navigate(`/${page}`);
+                    if (page === "recommended outfits") {
+                      navigate("/outfits");
+                    } else {
+                      navigate(`/${page}`);
+                    }
                   }}
                 >
                   <Typography textAlign="center">{page}</Typography>
@@ -130,7 +134,11 @@ const Navbar = () => {
                 key={page}
                 onClick={() => {
                   handleCloseNavMenu();
-                  navigate(`/${page}`);
+                  if (page === "recommended outfits") {
+                    navigate("/outfits");
+                  } else {
+                    navigate(`/${page}`);
+                  }
                 }}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
