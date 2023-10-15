@@ -9,7 +9,10 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import Avatar from "@mui/material/Avatar";
-import { CardHeader } from "@mui/material";
+import Switch from "@mui/material/Switch";
+import Checkbox from "@mui/material/Checkbox";
+import { CardHeader, FormControlLabel, TextField } from "@mui/material";
+import { useEffect } from "react";
 const GenerateOutfitsPage = () => {
   const [recommendedColors, setRecommendedColors] = useState([
     {
@@ -63,6 +66,9 @@ const GenerateOutfitsPage = () => {
       },
     },
   ]);
+  const [nOutfits, setNOutfits] = useState(5);
+  const topNOutfits = recommendedColors.slice(0, nOutfits);
+  const [colorsToDisplay, setColorsToDisplay] = useState(topNOutfits);
 
   return (
     <Box
@@ -77,7 +83,7 @@ const GenerateOutfitsPage = () => {
         sx={{
           position: "relative",
           display: "flex",
-          flexDirection: "column",
+          flexDirection: "row",
           flexGrow: 1,
           width: "100%",
           backgroundColor: "secondary.main",
@@ -89,13 +95,95 @@ const GenerateOutfitsPage = () => {
             position: "relative",
             display: "flex",
             flexDirection: "column",
+            padding: "2em",
+            flexGrow: 1,
+          }}
+        >
+          <TextField
+            id="outlined-number"
+            label="Number of Outfits"
+            type="number"
+            variant="filled"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            value={nOutfits}
+            onChange={(event) => {
+              if (event.target.value < 1 || !event.target.value) {
+                setNOutfits(1);
+                return;
+              }
+              setNOutfits(parseInt(event.target.value));
+            }}
+            sx={{
+              backgroundColor: "white",
+              borderRadius: "4px",
+              marginBottom: "1rem",
+            }}
+            InputProps={{ inputProps: { min: 1 } }}
+          />
+          <Divider sx={{ mb: "1rem" }} />
+          <Typography
+            variant="h6"
+            sx={{ color: "white", marginBottom: "1rem" }}
+          >
+            Displayed Colours
+          </Typography>
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fill, minmax(60px, 1fr))",
+              gap: "1rem",
+              marginBottom: "1rem",
+            }}
+          >
+            {recommendedColors.map((color, index) => (
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  backgroundColor: "white",
+                  padding: "0.5rem",
+                  borderRadius: "4px",
+                  borderBottom: "10px solid" + color?.hex,
+                }}
+                key={index}
+              >
+                <Typography
+                  sx={{ textAlign: "center", fontWeight: "bold" }}
+                  variant="body2"
+                >
+                  {index + 1}
+                  {". "}
+                </Typography>
+                <Checkbox
+                  checked={colorsToDisplay.includes(color)}
+                  onChange={(event) => {
+                    if (event.target.checked) {
+                      setColorsToDisplay([...colorsToDisplay, color]);
+                    } else {
+                      setColorsToDisplay(
+                        colorsToDisplay.filter((c) => c !== color)
+                      );
+                    }
+                  }}
+                />
+              </Box>
+            ))}
+          </Box>
+        </Box>
+        <Box
+          sx={{
+            position: "relative",
+            display: "flex",
+            flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
             flexGrow: 1,
             height: "300px",
           }}
         >
-          {recommendedColors.map((color) => (
+          {colorsToDisplay.map((color) => (
             <Wheel
               color={color?.hex}
               style={{ position: "absolute" }}
@@ -117,7 +205,7 @@ const GenerateOutfitsPage = () => {
           maxWidth: "xl",
         }}
       >
-        {recommendedColors.map((color, index) => (
+        {topNOutfits.map((color, index) => (
           <Card sx={{ maxWidth: 345, minWidth: 150 }} key={index}>
             <CardHeader
               avatar={
