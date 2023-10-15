@@ -40,6 +40,7 @@ const ClothesPage = () => {
       colourRelationship: "Monochromatic",
       Segments: {
         Segment_001: {
+          src: "https://picsum.photos/150",
           part: "Top",
           size: 5,
           colourRelationship: "Analogous",
@@ -53,6 +54,7 @@ const ClothesPage = () => {
           },
         },
         Segment_002: {
+          src: "https://picsum.photos/150",
           part: "Top",
           size: 5,
           colourRelationship: "Analogous",
@@ -66,6 +68,7 @@ const ClothesPage = () => {
           },
         },
         Segment_003: {
+          src: "https://picsum.photos/150",
           part: "Top",
           size: 5,
           colourRelationship: "Analogous",
@@ -90,6 +93,7 @@ const ClothesPage = () => {
       colourRelationship: "Monochromatic",
       Segments: {
         Segment_001: {
+          src: "https://picsum.photos/150",
           part: "Top",
           size: 5,
           colourRelationship: "Analogous",

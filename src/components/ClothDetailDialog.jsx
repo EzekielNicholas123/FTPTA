@@ -91,6 +91,16 @@ function ClothesDialog(props) {
               return (
                 <Box>
                   <Divider sx={{ marginBottom: "1rem" }} />
+                  <Box
+                    component="img"
+                    src={segment.src}
+                    sx={{
+                      width: "100%",
+                      height: "auto",
+                      objectFit: "contain",
+                      borderRadius: "5px",
+                    }}
+                  />
                   <DialogContentText>
                     <Typography component="span" sx={{ fontWeight: 700 }}>
                       Segment:{" "}
