@@ -31,44 +31,16 @@ const ClothesPage = () => {
   const [currentDataset, setCurrentDataset] = useState("Dataset_01");
   const [clothes, setClothes] = useState([
     {
-      filename: "Image_001",
-      relativePath: "Dataset_01/Image_001",
+      filename: "cloth_0.jpg",
+      relativePath: "public/images/",
       width: 3,
       height: 3,
-      format: "png",
+      format: "jpg",
       colourModel: "RGB",
       colourRelationship: "Monochromatic",
       Segments: {
         Segment_001: {
-          src: "https://picsum.photos/150",
-          part: "Top",
-          size: 5,
-          colourRelationship: "Analogous",
-          ColourInSegmentations: {
-            ColourInSegmentation_001: {
-              positionMatrix: "[[0,1,0], [1,1,1], [0,1,0]]",
-              positionCatagory: "Center",
-              percentage: 0.556,
-              colourDefinition: "0x0000ff",
-            },
-          },
-        },
-        Segment_002: {
-          src: "https://picsum.photos/150",
-          part: "Top",
-          size: 5,
-          colourRelationship: "Analogous",
-          ColourInSegmentations: {
-            ColourInSegmentation_001: {
-              positionMatrix: "[[0,1,0], [1,1,1], [0,1,0]]",
-              positionCatagory: "Center",
-              percentage: 0.556,
-              colourDefinition: "0x0000ff",
-            },
-          },
-        },
-        Segment_003: {
-          src: "https://picsum.photos/150",
+          src: "/images/segment_0.jpg",
           part: "Top",
           size: 5,
           colourRelationship: "Analogous",
@@ -84,16 +56,16 @@ const ClothesPage = () => {
       },
     },
     {
-      filename: "Image_002",
-      relativePath: "Dataset_01/Image_002",
+      filename: "cloth_1.jpg",
+      relativePath: "public/images/",
       width: 3,
       height: 3,
-      format: "png",
+      format: "jpg",
       colourModel: "RGB",
       colourRelationship: "Monochromatic",
       Segments: {
         Segment_001: {
-          src: "https://picsum.photos/150",
+          src: "/images/segment_1.jpg",
           part: "Top",
           size: 5,
           colourRelationship: "Analogous",
@@ -214,7 +186,7 @@ const ClothesPage = () => {
             <Box
               key={index}
               sx={{
-                backgroundImage: `url(https://picsum.photos/150)`,
+                backgroundImage: `url(${cloth.relativePath + cloth.filename})`,
                 height: "150px",
                 backgroundSize: "cover",
                 borderRadius: "4px",

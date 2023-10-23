@@ -1,5 +1,5 @@
 import { Wheel } from "@uiw/react-color";
-import { useState, React } from "react";
+import { useState, useEffect, React } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -12,7 +12,6 @@ import Avatar from "@mui/material/Avatar";
 import Switch from "@mui/material/Switch";
 import Checkbox from "@mui/material/Checkbox";
 import { CardHeader, FormControlLabel, TextField } from "@mui/material";
-import { useEffect } from "react";
 const GenerateOutfitsPage = () => {
   const [recommendedColors, setRecommendedColors] = useState([
     {
@@ -70,6 +69,10 @@ const GenerateOutfitsPage = () => {
   const topNOutfits = recommendedColors.slice(0, nOutfits);
   const [colorsToDisplay, setColorsToDisplay] = useState(topNOutfits);
 
+  useEffect(() => {
+    setColorsToDisplay(topNOutfits);
+  }, [nOutfits]);
+
   return (
     <Box
       sx={{
@@ -81,115 +84,125 @@ const GenerateOutfitsPage = () => {
     >
       <Box
         sx={{
-          position: "relative",
           display: "flex",
-          flexDirection: "row",
-          flexGrow: 1,
-          width: "100%",
           backgroundColor: "secondary.main",
-          alignItems: "center",
+          width: "100%",
+          justifyContent: "center",
         }}
       >
         <Box
           sx={{
             position: "relative",
             display: "flex",
-            flexDirection: "column",
-            padding: "2em",
+            flexDirection: "row",
             flexGrow: 1,
+            width: "100%",
+            backgroundColor: "secondary.main",
+            alignItems: "center",
+            maxWidth: "xl",
           }}
         >
-          <TextField
-            id="outlined-number"
-            label="Number of Outfits"
-            type="number"
-            variant="filled"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            value={nOutfits}
-            onChange={(event) => {
-              if (event.target.value < 1 || !event.target.value) {
-                setNOutfits(1);
-                return;
-              }
-              setNOutfits(parseInt(event.target.value));
-            }}
-            sx={{
-              backgroundColor: "white",
-              borderRadius: "4px",
-              marginBottom: "1rem",
-            }}
-            InputProps={{ inputProps: { min: 1 } }}
-          />
-          <Divider sx={{ mb: "1rem" }} />
-          <Typography
-            variant="h6"
-            sx={{ color: "white", marginBottom: "1rem" }}
-          >
-            Displayed Colours
-          </Typography>
           <Box
             sx={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(60px, 1fr))",
-              gap: "1rem",
-              marginBottom: "1rem",
+              position: "relative",
+              display: "flex",
+              flexDirection: "column",
+              padding: "2em",
+              flexGrow: 1,
             }}
           >
-            {recommendedColors.map((color, index) => (
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  backgroundColor: "white",
-                  padding: "0.5rem",
-                  borderRadius: "4px",
-                  borderBottom: "10px solid" + color?.hex,
-                }}
-                key={index}
-              >
-                <Typography
-                  sx={{ textAlign: "center", fontWeight: "bold" }}
-                  variant="body2"
-                >
-                  {index + 1}
-                  {". "}
-                </Typography>
-                <Checkbox
-                  checked={colorsToDisplay.includes(color)}
-                  onChange={(event) => {
-                    if (event.target.checked) {
-                      setColorsToDisplay([...colorsToDisplay, color]);
-                    } else {
-                      setColorsToDisplay(
-                        colorsToDisplay.filter((c) => c !== color)
-                      );
-                    }
+            <TextField
+              id="outlined-number"
+              label="Number of Outfits"
+              type="number"
+              variant="filled"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              value={nOutfits}
+              onChange={(event) => {
+                if (event.target.value < 1 || !event.target.value) {
+                  setNOutfits(1);
+                  return;
+                }
+                setNOutfits(parseInt(event.target.value));
+              }}
+              sx={{
+                backgroundColor: "white",
+                borderRadius: "4px",
+                marginBottom: "1rem",
+              }}
+              InputProps={{ inputProps: { min: 1 } }}
+            />
+            <Divider sx={{ mb: "1rem" }} />
+            <Typography
+              variant="h6"
+              sx={{ color: "white", marginBottom: "1rem" }}
+            >
+              Displayed Colours
+            </Typography>
+            <Box
+              sx={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fill, minmax(60px, 1fr))",
+                gap: "1rem",
+                marginBottom: "1rem",
+              }}
+            >
+              {topNOutfits.map((color, index) => (
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    backgroundColor: "white",
+                    padding: "0.5rem",
+                    borderRadius: "4px",
+                    borderBottom: "10px solid" + color?.hex,
                   }}
-                />
-              </Box>
+                  key={index}
+                >
+                  <Typography
+                    sx={{ textAlign: "center", fontWeight: "bold" }}
+                    variant="body2"
+                  >
+                    {index + 1}
+                    {". "}
+                  </Typography>
+                  <Checkbox
+                    checked={colorsToDisplay.includes(color)}
+                    onChange={(event) => {
+                      if (event.target.checked) {
+                        setColorsToDisplay([...colorsToDisplay, color]);
+                      } else {
+                        setColorsToDisplay(
+                          colorsToDisplay.filter((c) => c !== color)
+                        );
+                      }
+                    }}
+                  />
+                </Box>
+              ))}
+            </Box>
+          </Box>
+          <Box
+            sx={{
+              position: "relative",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              flexGrow: 1,
+              height: "300px",
+            }}
+          >
+            {colorsToDisplay.map((color) => (
+              <Wheel
+                color={color?.hex}
+                style={{ position: "absolute" }}
+                key={color?.hex}
+              />
             ))}
           </Box>
-        </Box>
-        <Box
-          sx={{
-            position: "relative",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            flexGrow: 1,
-            height: "300px",
-          }}
-        >
-          {colorsToDisplay.map((color) => (
-            <Wheel
-              color={color?.hex}
-              style={{ position: "absolute" }}
-              key={color?.hex}
-            />
-          ))}
         </Box>
       </Box>
       <Box
