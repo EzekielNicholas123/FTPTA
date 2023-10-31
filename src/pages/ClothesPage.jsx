@@ -32,7 +32,7 @@ const ClothesPage = () => {
   const [clothes, setClothes] = useState([
     {
       filename: "cloth_0.jpg",
-      relativePath: "public/images/",
+      relativePath: "images/",
       width: 3,
       height: 3,
       format: "jpg",
@@ -57,7 +57,7 @@ const ClothesPage = () => {
     },
     {
       filename: "cloth_1.jpg",
-      relativePath: "public/images/",
+      relativePath: "images/",
       width: 3,
       height: 3,
       format: "jpg",
