@@ -163,10 +163,10 @@ const ClothesPage = () => {
             <Button
               variant="outlined"
               onClick={() => {
-                navigate("/outfits/generate");
+                navigate("/outfits");
               }}
             >
-              Generate Outfit
+              Recommended Outfits
             </Button>
           </Box>
         </Box>
