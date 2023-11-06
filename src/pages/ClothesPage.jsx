@@ -46,10 +46,10 @@ const ClothesPage = () => {
           colourRelationship: "Analogous",
           ColourInSegmentations: {
             ColourInSegmentation_001: {
-              positionMatrix: "[[0,1,0], [1,1,1], [0,1,0]]",
+              positionMatrix: "[[0,1,0], [1,1,1], [1,1,1]]",
               positionCatagory: "Center",
               percentage: 0.556,
-              colourDefinition: "0x0000ff",
+              colourDefinition: "0x111111",
             },
           },
         },
@@ -74,7 +74,7 @@ const ClothesPage = () => {
               positionMatrix: "[[0,1,0], [1,1,1], [0,1,0]]",
               positionCatagory: "Center",
               percentage: 0.556,
-              colourDefinition: "0x0000ff",
+              colourDefinition: "0x449988",
             },
           },
         },

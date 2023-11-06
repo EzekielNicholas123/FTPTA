@@ -18,13 +18,21 @@ import { blue } from "@mui/material/colors";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Divider } from "@mui/material";
+import { Wheel } from "@uiw/react-color";
+import { PieChart } from "@mui/x-charts/PieChart";
+import HeatMap from "react-heatmap-grid";
 
 function ClothesDialog(props) {
   const { onClose, open, clothData } = props;
 
+  const formatHex = (hex) => {
+    return "#" + hex.slice(2);
+  };
+
   const handleListItemClick = (value) => {
     onClose(value);
   };
+  const pieParams = { height: 100, margin: { right: 5 } };
 
   return (
     <Dialog onClose={onClose} open={open}>
@@ -143,7 +151,25 @@ function ClothesDialog(props) {
                             >
                               Position Matrix:{" "}
                             </Typography>
-                            {colourInSegmentation.positionMatrix}
+                            <Box
+                              sx={{
+                                display: "flex",
+                                justifyContent: "center",
+                              }}
+                            >
+                              <HeatMap
+                                xLabels={["", "", ""]}
+                                yLabels={["", "", ""]}
+                                data={JSON.parse(
+                                  colourInSegmentation.positionMatrix
+                                )}
+                                background={formatHex(
+                                  colourInSegmentation.colourDefinition
+                                )}
+                                yLabelWidth={0}
+                                squares
+                              />
+                            </Box>
                           </DialogContentText>
                           <DialogContentText>
                             <Typography
@@ -161,7 +187,37 @@ function ClothesDialog(props) {
                             >
                               Percentage:{" "}
                             </Typography>
-                            {colourInSegmentation.percentage}
+                            <PieChart
+                              series={[
+                                {
+                                  data: [
+                                    {
+                                      id: 0,
+                                      value:
+                                        colourInSegmentation.percentage * 100,
+                                      label:
+                                        colourInSegmentation.colourDefinition,
+                                      color: formatHex(
+                                        colourInSegmentation.colourDefinition
+                                      ),
+                                    },
+                                    {
+                                      id: 1,
+                                      value:
+                                        100 -
+                                        100 * colourInSegmentation.percentage,
+                                      color: "grey",
+                                    },
+                                  ],
+                                },
+                              ]}
+                              width={300}
+                              height={100}
+                              slotProps={{
+                                legend: { hidden: true },
+                              }}
+                              {...pieParams}
+                            />
                           </DialogContentText>
                           <DialogContentText>
                             <Typography
@@ -170,7 +226,20 @@ function ClothesDialog(props) {
                             >
                               Colour Definition:{" "}
                             </Typography>
-                            {colourInSegmentation.colourDefinition}
+                            <Box
+                              sx={{
+                                display: "flex",
+                                justifyContent: "center",
+                              }}
+                            >
+                              <Wheel
+                                color={formatHex(
+                                  colourInSegmentation.colourDefinition
+                                )}
+                                width={100}
+                                height={100}
+                              />
+                            </Box>
                           </DialogContentText>
                         </Box>
                       );

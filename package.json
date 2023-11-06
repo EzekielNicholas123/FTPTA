@@ -15,10 +15,12 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.9",
     "@mui/material": "^5.14.10",
+    "@mui/x-charts": "^6.18.0",
     "@react-spectrum/color": "^3.0.0-beta.25",
     "@uiw/react-color": "^1.4.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-heatmap-grid": "^0.9.0",
     "react-router-dom": "^6.16.0",
     "react-spectrum": "^1.2.6"
   },
