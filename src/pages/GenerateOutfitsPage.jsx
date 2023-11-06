@@ -11,7 +11,15 @@ import Divider from "@mui/material/Divider";
 import Avatar from "@mui/material/Avatar";
 import Switch from "@mui/material/Switch";
 import Checkbox from "@mui/material/Checkbox";
-import { CardHeader, FormControlLabel, TextField } from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+
+import {
+  CardHeader,
+  FormControlLabel,
+  TextField,
+  IconButton,
+} from "@mui/material";
 const GenerateOutfitsPage = () => {
   const [recommendedColors, setRecommendedColors] = useState([
     {
@@ -68,6 +76,21 @@ const GenerateOutfitsPage = () => {
   const [nOutfits, setNOutfits] = useState(5);
   const topNOutfits = recommendedColors.slice(0, nOutfits);
   const [colorsToDisplay, setColorsToDisplay] = useState(topNOutfits);
+  const [imageList, setImageList] = useState({
+    0: ["/images/influencer-1.png", "https://picsum.photos/200/300"],
+    1: ["/images/influencer-2.png", "https://picsum.photos/200/300"],
+    2: ["/images/influencer-3.png", "https://picsum.photos/200/300"],
+    3: ["/images/influencer-4.png", "https://picsum.photos/200/300"],
+    4: ["/images/influencer-5.png", "https://picsum.photos/200/300"],
+  });
+
+  const [currentImage, setCurrentImage] = useState({
+    0: 0,
+    1: 0,
+    2: 0,
+    3: 0,
+    4: 0,
+  });
 
   useEffect(() => {
     setColorsToDisplay(topNOutfits);
@@ -233,11 +256,40 @@ const GenerateOutfitsPage = () => {
               }
               title={`${index + 1}. ${color.name}`}
             />
-            <CardMedia
-              sx={{ height: 140, objectFit: "contain" }}
-              image={`/images/influencer-${index + 1}.png`}
-              component="img"
-            />
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <IconButton
+                onClick={() =>
+                  setCurrentImage({
+                    ...currentImage,
+                    [index]: currentImage[index] - 1,
+                  })
+                }
+                disabled={currentImage[index] === 0}
+              >
+                <ArrowBackIcon />
+              </IconButton>
+              <CardMedia
+                sx={{ height: 140, objectFit: "contain" }}
+                image={imageList[index][currentImage[index]]}
+                component="img"
+              />
+              <IconButton
+                onClick={() =>
+                  setCurrentImage({
+                    ...currentImage,
+                    [index]: currentImage[index] + 1,
+                  })
+                }
+                disabled={currentImage[index] === imageList[index].length - 1}
+              >
+                <ArrowForwardIcon />
+              </IconButton>
+            </Box>
             <CardContent>
               <Divider sx={{ mb: "1rem" }} />
               <Box
