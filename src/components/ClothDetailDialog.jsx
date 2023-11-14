@@ -168,6 +168,19 @@ function ClothesDialog(props) {
                                 )}
                                 yLabelWidth={0}
                                 squares
+                                cellStyle={(
+                                  background,
+                                  value,
+                                  min,
+                                  max,
+                                  data,
+                                  x,
+                                  y
+                                ) => ({
+                                  background: background,
+                                  opacity: (1 / (max - min)) * (value - min),
+                                  border: "solid 1px grey",
+                                })}
                               />
                             </Box>
                           </DialogContentText>
@@ -176,7 +189,7 @@ function ClothesDialog(props) {
                               component="span"
                               sx={{ fontWeight: 700 }}
                             >
-                              Position Catagory:{" "}
+                              Position Category:{" "}
                             </Typography>
                             {colourInSegmentation.positionCatagory}
                           </DialogContentText>
@@ -185,7 +198,7 @@ function ClothesDialog(props) {
                               component="span"
                               sx={{ fontWeight: 700 }}
                             >
-                              Percentage:{" "}
+                              Percentage (in %):{" "}
                             </Typography>
                             <PieChart
                               series={[
@@ -195,8 +208,9 @@ function ClothesDialog(props) {
                                       id: 0,
                                       value:
                                         colourInSegmentation.percentage * 100,
-                                      label:
-                                        colourInSegmentation.colourDefinition,
+                                      label: formatHex(
+                                        colourInSegmentation.colourDefinition
+                                      ),
                                       color: formatHex(
                                         colourInSegmentation.colourDefinition
                                       ),
@@ -205,7 +219,7 @@ function ClothesDialog(props) {
                                       id: 1,
                                       value:
                                         100 -
-                                        100 * colourInSegmentation.percentage,
+                                        colourInSegmentation.percentage * 100,
                                       color: "grey",
                                     },
                                   ],
